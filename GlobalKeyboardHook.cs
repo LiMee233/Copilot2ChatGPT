@@ -158,8 +158,8 @@ namespace Copilot2ChatGPT
             }
 
             // in case we processed the message, prevent the system from passing the message to the rest of the hook chain
-            // return result.ToInt32() == 0 ? CallNextHookEx(_hookId, nCode, wParam, lParam) : result;
-            return CallNextHookEx(_hookId, nCode, wParam, lParam);
+            return result.ToInt32() == 0 ? CallNextHookEx(_hookId, nCode, wParam, lParam) : result;
+            // return CallNextHookEx(_hookId, nCode, wParam, lParam);
         }
 
         #region extern
