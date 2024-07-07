@@ -77,12 +77,6 @@ namespace Copilot2ChatGPT
                 return -1;
             }
 
-            if (!ValidateKeys(keys))
-            {
-                message = "Unallowed key. Only 'shift', 'ctrl' and 'a' - 'z' are allowed";
-                return -1;
-            }
-
             var kc = new KeyCombination(keys);
             int id = kc.GetHashCode();
             if (_hookEvents.ContainsKey(id))
@@ -99,18 +93,6 @@ namespace Copilot2ChatGPT
             _hookEvents[id] = new KeyValuePair<KeyCombination, HookActions>(kc, new HookActions(asyncAction ?? execute, dispose));
             message = string.Empty;
             return id;
-        }
-
-        private bool ValidateKeys(IEnumerable<Key> keys)
-        {
-            return keys.All(t => IsKeyValid((int)t));
-        }
-
-        private bool IsKeyValid(int key)
-        {
-            // 'alt' is sys key and hence is disallowed.
-            // a - z and shift, ctrl. 
-            return key >= 44 && key <= 69 || key >= 116 && key <= 119;
         }
 
         /// <summary>
