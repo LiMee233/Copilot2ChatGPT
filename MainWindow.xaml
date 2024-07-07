@@ -6,8 +6,31 @@
         xmlns:local="clr-namespace:Copilot2ChatGPT"
         xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" ShowInTaskbar="False">
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0" CornerRadius="0" GlassFrameThickness="1" UseAeroCaptionButtons="False"/>
+    </WindowChrome.WindowChrome>
+
     <Grid>
-        <wv2:WebView2 Source="https://chat.openai.com/"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Margin="10 10 10 0" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="button_OpenInNewWindow" Click="button_Click"
+                    FontFamily="Segoe Fluent Icons" FontSize="16" Content="&#xE8A7;"
+                    Width="40" Height="40" BorderBrush="Transparent"/>
+            <Button x:Name="button_Settings" Click="button_Click"
+                    FontFamily="Segoe Fluent Icons" FontSize="16" Content="&#xE713;"
+                    Width="40" Height="40" BorderBrush="Transparent"/>
+            <Button x:Name="button_Reload" Click="button_Click"
+                    FontFamily="Segoe Fluent Icons" FontSize="16" Content="&#xE72C;"
+                    Width="40" Height="40" BorderBrush="Transparent"/>
+            <Button x:Name="button_Close"
+                    FontFamily="Segoe Fluent Icons" FontSize="16" Content="&#xE8BB;"
+                    Width="40" Height="40" BorderBrush="Transparent" Click="button_Click"/>
+        </StackPanel>
+        <wv2:WebView2 x:Name="MainWebView" Grid.Row="1" Source="https://chat.openai.com/"/>
     </Grid>
 </Window>
