@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Diagnostics;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +20,14 @@ namespace Copilot2ChatGPT
         public MainWindow()
         {
             InitializeComponent();
+
+            // Hook Copilot Key.
+            string message;
+            var hookId = GlobalKeyboardHook.Instance.Hook(
+                new List<Key> { Key.LWin, Key.LeftShift, Key.F23 }, () =>
+                {
+                    Debug.WriteLine("Hooked Copilot Key.");
+                }, out message);
         }
     }
 }
